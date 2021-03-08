@@ -11,7 +11,19 @@ pipeline {
     }
     stage('test') {
       steps {
-        sh 'npm test'
+        sh 'npm run coverage'
+      }
+      post {
+        always {
+        publishHTML target: [
+          allowMissing         : false,
+          alwaysLinkToLastBuild: false,
+          keepAll             : true,
+          reportDir            : 'coverage',
+          reportFiles          : 'index.html',
+          reportName           : 'Code Coverage'
+        ]
+        }
       }
     }
     stage('deploy') {
