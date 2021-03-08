@@ -14,7 +14,7 @@ pipeline {
         sh 'npm test'
       }
     }
-    stage('build') {
+    stage('deploy') {
       steps {
         //just a sample
         sh 'npm --version'
